@@ -1,3 +1,6 @@
+## ZAYVA v0.1.1
+Deployment refresh for GitHub Pages.
+
 # ZAYVA v0.1
 
 A functional front-end prototype of ZAYVA's locked v0.1 scope.
