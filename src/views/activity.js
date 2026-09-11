@@ -1,0 +1,5 @@
+import { getState, setState } from '../state/store.js';
+import { money } from '../ui/components.js';
+export function ActivityView(t){ const s=getState(); const tx=[...s.transactions].sort((a,b)=>b.date.localeCompare(a.date)); return `<section class="view"><header class="page-head"><div><small>ZAYVA</small><h1>${t('activity')}</h1></div><button class="primary small" data-action="add-transaction">＋</button></header><div class="panel">${tx.length?tx.map(x=>`<button class="transaction-line" data-delete-tx="${x.id}"><div><b>${x.title||t('transaction')}</b><span>${x.date} · ${s.categories.find(c=>c.id===x.categoryId)?.name||t('income')}</span></div><strong class="${x.amount>0?'positive':''}">${money(x.amount)}</strong></button>`).join(''):`<p>${t('noTransactions')}</p>`}</div><p class="hint">${t('tapDelete')}</p></section>`; }
+}
+export function bindActivity(t){ document.querySelectorAll('[data-delete-tx]').forEach(b=>b.onclick=()=>{if(confirm(t('confirmDelete')))setState(s=>{s.transactions=s.transactions.filter(x=>x.id!==b.dataset.deleteTx);return s})}); }

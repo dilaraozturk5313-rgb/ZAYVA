@@ -1,0 +1,3 @@
+import { getState } from '../state/store.js';
+import { renderWidget } from '../ui/components.js';
+export function HomeView(t){ const s=getState(); return `<section class="view"><header class="hero"><div><div class="wordmark">ZAYVA</div><p>ZAYVA grows with you.</p></div><button class="round" data-action="open-widget-library">＋</button></header><div class="month-strip"><button>‹</button><b>September 2026</b><button>›</button></div><div class="widget-grid">${s.homeWidgets.map(id=>`<div class="widget-wrap" draggable="true" data-widget-id="${id}">${renderWidget(id,t)}</div>`).join('')}</div><button class="fab" data-action="add-transaction">＋</button></section>`; }

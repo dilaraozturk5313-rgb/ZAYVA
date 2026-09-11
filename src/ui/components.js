@@ -1,0 +1,22 @@
+import { getState, setState } from '../state/store.js';
+import { THEMES, WIDGET_CATALOG } from '../data/defaults.js';
+import { formatMoney, summary, categorySpent } from '../utils/finance.js';
+
+export const el = (tag, className='', html='') => { const n=document.createElement(tag); if(className)n.className=className; if(html!==undefined)n.innerHTML=html; return n; };
+export const money = (n) => { const s=getState(); return formatMoney(n,s.settings.currency,s.settings.language); };
+export function applyTheme() { const s=getState(); const t=THEMES[s.settings.theme]||THEMES.signature; Object.entries(t).forEach(([k,v])=>{ if(k!=='label') document.documentElement.style.setProperty(`--${k}`,v); }); }
+export function progress(current,target){ const p=Math.max(0,Math.min(100,target?current/target*100:0)); return `<div class="progress"><span style="width:${p}%"></span></div>`; }
+export function metricCard(label,value,soft=false){ return `<article class="metric-card ${soft?'soft':''}"><span>${label}</span><strong>${value}</strong></article>`; }
+export function openModal(content){ const wrap=el('div','modal-backdrop'); wrap.innerHTML=`<div class="modal"><button class="modal-close" aria-label="Close">×</button>${content}</div>`; wrap.querySelector('.modal-close').onclick=()=>wrap.remove(); wrap.onclick=e=>{if(e.target===wrap)wrap.remove()}; document.body.append(wrap); return wrap; }
+export function renderWidget(id,t){ const s=getState(); const sum=summary(s); const def=WIDGET_CATALOG.find(w=>w.id===id); if(!def)return '';
+  if(def.kind==='metric'){ const value={income:sum.income,remaining:sum.remaining,spent:sum.spent,saved:sum.saved}[id]; return metricCard(t(def.labelKey),money(value),id==='remaining'||id==='saved'); }
+  if(def.kind==='budget'){ const cats=s.categories.filter(c=>c.pinned).slice(0,6); return `<article class="panel span-2"><div class="panel-head"><h3>${t('myBudget')}</h3><button data-route="plan">${t('viewAll')}</button></div>${cats.map(c=>{const sp=categorySpent(s,c.id);return `<div class="budget-row"><div><b>${c.icon} ${c.name}</b><span>${money(sp)} / ${money(c.budget)}</span></div>${progress(sp,c.budget)}</div>`}).join('')}<button class="ghost" data-action="open-widget-library">+ ${t('addWidget')}</button></article>`; }
+  if(def.kind==='recent'){ const tx=s.transactions.filter(x=>x.amount<0).sort((a,b)=>b.date.localeCompare(a.date)).slice(0,3); return `<article class="panel span-2"><div class="panel-head"><h3>${t('recentPurchases')}</h3><button data-route="activity">${t('viewAll')}</button></div>${tx.map(x=>`<div class="activity-row"><div><b>${x.title||t('category')}</b><span>${x.date}</span></div><strong>${money(x.amount)}</strong></div>`).join('')}</article>`; }
+  if(def.kind==='goals'){ const goals=s.goals.filter(g=>g.pinned).slice(0,2); return `<article class="panel span-2"><div class="panel-head"><h3>${t('goals')}</h3><button data-route="goals">${t('viewAll')}</button></div>${goals.map(g=>`<div class="goal-row"><div><b>${g.icon||'◎'} ${g.name}</b><span>${money(g.current)} / ${money(g.target)}</span></div>${progress(g.current,g.target)}</div>`).join('')}</article>`; }
+  if(def.kind==='fixed'){ const total=s.fixedCosts.filter(f=>f.active).reduce((a,b)=>a+b.amount,0); return `<article class="panel"><small>${t('fixedCosts')}</small><strong class="big">${money(total)}</strong><span>${t('committed')}</span></article>`; }
+  if(def.kind==='notes'){ const note=s.notes[0]?.text||'—'; return `<article class="panel"><small>${t('notes')}</small><p>${note}</p></article>`; }
+  if(def.kind==='payday'){ const days=Math.max(0,Math.ceil((sum.range.end-new Date())/86400000)); return `<article class="panel"><small>${t('paydayCountdown')}</small><strong class="big">${days} d</strong></article>`; }
+  return `<article class="panel muted-panel"><small>${t(def.labelKey)}</small><p>${t('laterModule')}</p></article>`;
+}
+
+export function widgetLibrary(t){ const s=getState(); const modal=openModal(`<h2>${t('widgetLibrary')}</h2><p class="muted">${t('widgetLibraryHint')}</p><div class="widget-list">${WIDGET_CATALOG.map(w=>{const on=s.homeWidgets.includes(w.id);return `<button class="widget-choice" data-widget="${w.id}"><span>${t(w.labelKey)}</span><b>${on?t('remove'):t('add')}</b></button>`}).join('')}</div>`); modal.querySelectorAll('[data-widget]').forEach(btn=>btn.onclick=()=>{const id=btn.dataset.widget;setState(st=>{st.homeWidgets=st.homeWidgets.includes(id)?st.homeWidgets.filter(x=>x!==id):[...st.homeWidgets,id];return st}); modal.remove();}); }
