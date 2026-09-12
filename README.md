@@ -1,40 +1,23 @@
-## ZAYVA v0.1.1
-Deployment refresh for GitHub Pages.
+# ZAYVA v0.2 NEXT
 
-# ZAYVA v0.1
+This is a single-file GitHub Pages build. Upload `index.html` to the repository root.
 
-A functional front-end prototype of ZAYVA's locked v0.1 scope.
+Core changes in this build:
+- DF-inspired ZAYVA layout and typography, without personal/Dilara-specific data.
+- Bottom dock: Overview / Budget / More / Purchases / Savings.
+- More is the only button that opens a separate settings sheet.
+- Quick purchase registration on the main page.
+- Category click opens category detail + purchase registration.
+- No six-category cap; all categories render on the page.
+- Fixed costs live in More, render at bottom of Budget, and are deducted from period income.
+- Income-day-to-income-day cycle only.
+- Weekend income days move backward to Friday using the real calendar.
+- Period-specific income, transactions, savings and category budgets.
+- Default budget templates seed new periods; editing one period does not alter past/future periods.
+- Fixed cost templates recur automatically.
+- Empty numeric fields use placeholders/null, never fake zero values.
+- Onboarding: language, currency, theme, income day, fixed costs, exactly five starting categories.
+- Swedish/English and independent currency setting.
+- Five themes.
 
-## Included
-- Short onboarding: language, currency, theme, budget cycle, regular income
-- Home with dynamic widget library
-- Default Home metrics: Income, Remaining, Spent, Saved
-- Budget category progress bars
-- Recent purchases widget
-- Savings goals widget
-- Add purchase flow; Home + Activity + category spend update instantly
-- Activity history
-- Plan: budget-cycle switch, dynamic categories, fixed costs
-- Goals: multiple savings goals + month-by-month savings log
-- More: Notes, 5 curated themes, language and currency settings
-- Local persistence via localStorage
-
-## Architecture principles
-- No duplicated apps per theme: design tokens only
-- Localization strings separated from UI
-- Currency is independent of language
-- Categories, goals, fixed costs and Home widgets are data-driven
-- Budget-cycle logic is centralized
-- v0.1 intentionally excludes real bank sync, OCR receipt scanning and live investment feeds
-
-## Run
-Because the app uses ES modules, serve the folder over HTTP:
-
-```bash
-cd zayva-v0.1
-python3 -m http.server 8080
-```
-Then open http://localhost:8080.
-
-## Prototype note
-The app uses localStorage so changes persist in the browser. Use More > Reset demo data to restore defaults.
+Version: 0.2.0
