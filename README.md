@@ -1,23 +1,22 @@
-# ZAYVA v0.2 NEXT
+# ZAYVA v0.3 LOCKED
 
-This is a single-file GitHub Pages build. Upload `index.html` to the repository root.
+Single-file GitHub Pages build. Upload `index.html` to the root of the ZAYVA repository.
 
-Core changes in this build:
-- DF-inspired ZAYVA layout and typography, without personal/Dilara-specific data.
-- Bottom dock: Overview / Budget / More / Purchases / Savings.
-- More is the only button that opens a separate settings sheet.
-- Quick purchase registration on the main page.
-- Category click opens category detail + purchase registration.
-- No six-category cap; all categories render on the page.
-- Fixed costs live in More, render at bottom of Budget, and are deducted from period income.
-- Income-day-to-income-day cycle only.
-- Weekend income days move backward to Friday using the real calendar.
-- Period-specific income, transactions, savings and category budgets.
-- Default budget templates seed new periods; editing one period does not alter past/future periods.
-- Fixed cost templates recur automatically.
-- Empty numeric fields use placeholders/null, never fake zero values.
-- Onboarding: language, currency, theme, income day, fixed costs, exactly five starting categories.
-- Swedish/English and independent currency setting.
-- Five themes.
+Locked updates in this build:
+- Theme set: SIGNATURE, PLUM, ESPRESSO, MIDNIGHT, SAGE.
+- One-sided theme bloom/depth is on the **right**, while all UI/text stays normal.
+- Tagline: “Planera idag • möjliggör imorgon”.
+- Smaller period/month selector.
+- Rounded floating bottom dock: Översikt · Budget · ••• MER · Köp · Sparande.
+- Köp scrolls to Senaste köp.
+- No category icons.
+- Quick registration uses visible category buttons and includes notes.
+- Purchase notes are visible; every purchase has Edit/Delete.
+- Savings deduct from available income alongside fixed costs and purchases.
+- Budget progress appears only under Overview, compact and without duplicate Remaining row.
+- Save in MER persists settings, period income, fixed costs, categories and notes.
+- Mobile input fields are 16px+ to prevent iPhone/Safari focus zoom.
+- Browser-default blue text/link styling is overridden by the active ZAYVA theme.
+- Period isolation and weekend-adjusted income-day cycle preserved.
 
-Version: 0.2.0
+Data is stored locally in the browser via `localStorage`. Existing v0.2 local data is migrated on first v0.3 load.
