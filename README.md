@@ -1,17 +1,13 @@
-ZAYVA v0.4 HOTFIX
+# ZAYVA v0.5 — Reference Fix
 
-Fixes:
-- Theme system: SIGNATURE, PLUM, ESPRESSO, MIDNIGHT, SAGE
-- Visible theme color swatches in onboarding and MER
-- Theme-matched Reset app button
-- Right-side theme bloom direction retained
-- Fixed costs restored in overview/prognosis area
-- Fixed costs snapshotted per period
-- Current-period budget editor added to MER; Save persists it
-- Standard budget remains future-period template
-- Savings routed to period based on selected date
-- Budget progress uses category budget/spend, not whole income
-- My focus changed to a personal goal/wish
-- iPhone input auto-zoom mitigation (16px inputs)
-- iOS blue auto-detected text/link mitigation
-- Existing purchase edit/delete and other v0.3 functionality retained
+This build corrects the v0.4 theme/prognosis issues.
+
+- Theme picker uses ONE larger color dot per theme.
+- Themes: SIGNATURE, PLUM, ESPRESSO, MIDNIGHT, SAGE.
+- Background bloom/fade is stronger on the RIGHT, matching the approved reference direction.
+- Approved reference image is included in `reference/APPROVED-THEME-REFERENCE.jpeg`.
+- Prognosis line is pre-filled by fixed costs, before purchases are added.
+- Purchases and savings then extend the prognosis line.
+- Reset button follows the active theme color.
+
+Deploy `index.html` at the repository root.
