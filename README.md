@@ -1,13 +1,11 @@
-# ZAYVA v0.5 — Reference Fix
+ZAYVA v0.7 EXACT REFERENCE
 
-This build corrects the v0.4 theme/prognosis issues.
-
-- Theme picker uses ONE larger color dot per theme.
+- UI rebuilt to follow the approved phone-screen design reference as closely as possible in live HTML/CSS.
 - Themes: SIGNATURE, PLUM, ESPRESSO, MIDNIGHT, SAGE.
-- Background bloom/fade is stronger on the RIGHT, matching the approved reference direction.
-- Approved reference image is included in `reference/APPROVED-THEME-REFERENCE.jpeg`.
-- Prognosis line is pre-filled by fixed costs, before purchases are added.
-- Purchases and savings then extend the prognosis line.
-- Reset button follows the active theme color.
-
-Deploy `index.html` at the repository root.
+- One large colour chip per theme selector.
+- Forecast line is pre-filled by fixed costs; registered purchases fill after it.
+- Forecast has no savings segment and no lower Fixed/Spent/Savings legend.
+- No duplicate "Used of budget" block in the lower Budget area.
+- Existing functions retained: period isolation, budget editing/save, fixed costs, purchase edit/delete, savings, goals, quick registration, MER settings, income-day cycle.
+- iOS input auto-zoom hardening and blue auto-link/data-detector hardening retained.
+- APPROVED-VISUAL-REFERENCE.jpeg is the exact user-supplied visual reference.
