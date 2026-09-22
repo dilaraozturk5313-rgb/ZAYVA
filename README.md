@@ -1,3 +1,1 @@
-ZAYVA v0.6.5 VISUAL MASTER
-
-Base: v0.6 functionality. Visual CSS was cleaned so only one master visual layer remains. APPROVED-REFERENCE.jpeg is the visual reference.
+ZAYVA v0.6.6 — visual-only update from v0.6.5. Functional structure preserved. Added tonal theme atmosphere, right-side bloom and draped contrast folds based on the approved reference.
