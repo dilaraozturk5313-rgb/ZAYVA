@@ -1,7 +1,6 @@
-# ZAYVA v0.6.1 — VISUAL ONLY
+ZAYVA v0.6.3 — EXACT VISUAL
 
-Bas: exakt v0.6-koden före v0.7.
-
-Enda ändringen i denna version är temautseendet/bakgrunden: SIGNATURE, PLUM, ESPRESSO, MIDNIGHT och SAGE har kodats om visuellt efter den godkända referensen. Ingen översiktslayout, prognoslogik, navigation, formulärlogik, perioddata eller annan funktion har byggts om.
-
-`reference/APPROVED-VISUAL-REFERENCE.jpeg` är den låsta visuella referensen.
+Base: v0.6.2 / v0.6 functionality and DOM.
+Only the visual CSS/theme layer was changed.
+APPROVED-REFERENCE.jpeg is the exact locked visual reference supplied by the user.
+The reference is mirrored only to communicate background direction; app text/UI remain normal.
